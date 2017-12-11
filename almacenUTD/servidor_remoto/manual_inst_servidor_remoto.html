@@ -1,0 +1,366 @@
+<?php
+header('Cache-Control: no-cache');
+header('Pragma: no-cache'); 
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Documento sin t&iacute;tulo</title>
+</head>
+<html>
+<head>
+<title>Manual Instalacion CodeKa Mx Servidor Remoto</title>
+</head>
+<body>
+<table style="text-align: left; width: 900px; margin-left: auto; margin-right: auto;" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td style="vertical-align: top;">
+<p style="text-align: center; " align="center">
+Tutorial de cómo instalé CodekaMX en mi proveedor de hosting, remoto
+<p style="text-align: right">M&#233;xico, D.F: 13 abril 2010
+<p > <b>Requerimientos</b>:
+<br/>1.-
+Proveedor de servicio de hosting
+que te permita tener bases de datos
+<br/>2.- El software codekaMx
+<br/>3.- Navegador, como firefox
+(opensource)
+<br/>4.- Compresor de archivos 7z
+(opensource)
+<br/> <br>
+ APACHE,
+MySQL y PHP.- Como en el
+servidor los tenemos instalados, ya nos ahorramos algunos pasos (y
+problemas, :-).
+<br/> <br>
+1.-
+Descargamos “2010-01-28-codekamx.rar” (en este caso, desde http://bit.ly/9D3xoe, de linuxman)
+<br/> <br>
+2.- Lo
+descomprimimos con el 7z en alguna carpeta (esta carpeta la
+utilizaremos en el
+paso 6, ojo).
+<br/>  <img style="width: 861px; height: 418px;" alt="" src="./img/1_descomprecion_codeka.jpg"><br>
+
+<br/> 
+<br/>3.- Subimos,
+a nuestro servidor, el archivo “2010-01-28-codekamx.rar”. ¿Cómo&#8204;
+<table style="text-align: left; width: 850px; margin-left: auto; margin-right: auto;" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 400px;">
+<br>
+Entramos a nuestro CPanel,
+con el firefox (claro, nos pedirá el usuario y el pasword)<br>
+<br>
+<br>
+Ir a “Archivos”<br>
+<br>
+<br>
+<br>
+<br>
+</td>
+<td style="vertical-align: top; height: 250px; width: 250px;">
+<img src="./img/2_archivos.jpg" alt="" style="width: 510px; height: 226px;"><br>
+<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; height: 250px; width: 250px;">
+“Cargar
+archivos”<br>
+<br>
+<br>
+</td>
+<td style="vertical-align: top; height: 250px; width: 250px;">
+<img src="./img/3_cargar_archivos.jpg" alt="" style="width: 530px; height: 254px;"></td>
+</tr>
+<tr>
+<td colspan="2" rowspan="1" style="vertical-align: top;">
+<br>
+<br>
+Clic en "Examinar", navegar hasta el codeka.rar que habíamos descargado, clic y
+esperamos.<br>
+<br>
+<img src="./img/4_seleccion_de_codeka.jpg" alt="" style="width: 752px; height: 553px;"></td>
+</tr>
+</tbody>
+</table>
+<br/>
+        
+Renombremos el archivo “2010-01-28-codekamx.rar” a algo más cómodo, ej.
+“codekamx1”.
+<br/> 
+<br/> 4.- Descomprimir
+este RAR.
+<table style="text-align: left; width: 900px; margin-left: auto; margin-right: auto; height: 200px;" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td style="vertical-align: top; text-align: left;">
+<br>
+Clic en
+“codekamx1.tar” y después
+en “Extraer el contenido del archivo”</td>
+<td style="vertical-align: middle; text-align: center;">
+<img src="./img/5_descomprimir.jpg" alt="" style="width: 615px; height: 443px;"><br>
+<br>
+<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><br>
+Se creará una nueva carpeta llamada "codekamx", al que renombré a "codekamx1"<br>
+</td>
+<td style="vertical-align: top;"><img src="./img/5a_resultado.jpg" alt="" style="width: 644px; height: 396px;"><br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br/>5.- Creación de la base
+de datos para codeka.
+<table style="text-align: left; width: 800px; margin-left: auto; margin-right: auto;" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td style="vertical-align: top; height: 250px; width: 400px;">
+<br>
+<br>
+En el CPanel, clic en
+“asistente de Mysql”,</td>
+<td style="vertical-align: middle; height: 250px; width: 500px; text-align: center;">
+<img style="width: 508px; height: 227px;" alt="" src="./img/6_creacion_db1.jpg"><br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; height: 250px;">
+<br>
+<br>
+<br>
+Escogemos un nombre para la base de datos, ejemplo: “codekamx1”.<br>
+<br>
+<br>
+Clic
+“Siguiente”.<br>
+</td>
+<td style="vertical-align: middle; height: 250px; text-align: center;">
+<img style="width: 389px; height: 126px;" alt="" src="./img/7_nombre_db.jpg"><br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; height: 250px;">
+       
+<br>
+Pon un Nombre de usuario, ej.:
+“yo”. <br>
+<br>
+<br>
+Contraseña (dos veces, para evitar “errores de dedo”).<br>
+<br>
+<br>
+<br>
+Clic en “Crear
+Usuario”.</td>
+<td style="vertical-align: middle; height: 250px; text-align: center;">
+<img style="width: 360px; height: 228px;" alt="" src="./img/8_usuario_pasw-_db.jpg"><br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; height: 250px;">
+<br>
+<br>
+Dar todos los privilegios
+al usuario “yo”.<br>
+<br>
+<br>
+<br>
+Clic en “Siguiente Paso”.</td>
+<td style="vertical-align: middle; height: 250px; text-align: center;">
+<img style="width: 406px; height: 176px;" alt="" src="./img/9_privilegios_db.jpg"><br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; height: 250px;">
+<br>
+<br>
+Nota: aunque colocamos en Nombre de Usuario la palabra: “yo”, el nombre
+de usuario completo está formado por dos partes: Los primeros ocho
+caracteres del nombre del dominio más la palabra "yo" , separadas por
+un guión.</td>
+<td style="vertical-align: middle; height: 250px; text-align: center;">
+<img style="width: 470px; height: 53px;" alt="" src="./img/10_resultado_db.jpg"><br>
+</td>
+</tr>
+</tbody>
+</table>
+<br/>
+ 
+<br/>
+6.- Creación de
+las tablas de la base de datos
+<table style="text-align: left; width: 850px; margin-left: auto; margin-right: auto;" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td style="vertical-align: top; text-align: center; width: 300px;">
+<br>
+Desde
+el CPanel ir a phpAdmin<br>
+</td>
+<td style="vertical-align: top; width: 550px;"><img style="width: 510px; height: 229px;" alt="" src="./img/11_ir_a_phpAdmin.jpg"><br>
+<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><br>
+Luego clic en el ícono de
+"casita" - <br>
+<br>
+Clic en la base de datos que creamos anteriormente, es decir "codekamx1"<br>
+</td>
+<td style="vertical-align: top;"><img style="width: 195px; height: 126px;" alt="" src="./img/12_prueba.jpg"><br>
+<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><br>
+<br>
+<br>
+Etiqueta
+“Importar”. En “Archivo a importar” clic en botón
+“Examinar”.</td>
+<td style="vertical-align: top;"><br>
+<img style="width: 613px; height: 180px;" alt="" src="./img/14_examinar.jpg"><br>
+<br>
+<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">
+<br>
+<br>
+Se abrirá una ventana de explorador y navegamos hasta
+la carpeta
+donde descomprimimos el codeka del paso 2 y buscamos el archivo “Base
+de datos
+inicial.sql”, seleccionándolo y terminamos con clic en el botón
+“Continuar”. Esperamos.</td>
+<td style="vertical-align: top;"><img style="width: 557px; height: 417px;" alt="" src="./img/15_base_datos_inicial.jpg"><br>
+<br>
+<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><br>
+Clic en botón Continuar<br>
+<br>
+</td>
+<td style="vertical-align: top;"><img style="width: 655px; height: 216px;" alt="" src="./img/16_continuar.jpg"><br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">Este es el resultado:<br>
+</td>
+<td style="vertical-align: top;"><img style="width: 199px; height: 594px;" alt="" src="./img/16_resultado.jpg"><br>
+</td>
+</tr>
+</tbody>
+</table>
+<br/>
+
+<br/>7.-
+Conectar codekaMx con la base de datos que creamos, por medio de
+editar el archivo “config.php”.
+<table style="text-align: left; width: 850px; margin-left: auto; margin-right: auto;" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td style="vertical-align: top; height: 250px; width: 400px;">
+Clic en la carpeta reci&#233;n formada "codekamx1" para entrar en ella.<br>
+</td>
+<td style="vertical-align: top; height: 250px; width: 600px;">
+<img style="width: 338px; height: 217px;" alt="" src="./img/17-ingresando_a_carpeta_codeka.jpg"><br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; height: 250px; width: 400px;">
+Buscar el archivo config.php y hacer clic en él.</td>
+<td style="vertical-align: top; height: 250px;">
+<img style="width: 401px; height: 158px;" alt="" src="./img/18_archivo_config.jpg"></td>
+</tr>
+<tr>
+<td style="vertical-align: top;">Clic en "Editar Archivo"<br>
+</td>
+<td style="vertical-align: top;"><img style="width: 255px; height: 130px;" alt="" src="./img/18_editar.jpg"><br>
+<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">Encontraremos lo siguiente, dentro de config.php:<br>
+</td>
+<td style="vertical-align: top;"><img style="width: 270px; height: 254px;" alt="" src="./img/19_config_antes.jpg"><br>
+</td>
+</tr>
+<tr>
+<td colspan="2" rowspan="1" style="vertical-align: top;">
+<br>
+Editémoslo, ingresando los datos de la base de datos que creamos en el paso 5.<br>
+<br>
+<img style="width: 683px; height: 242px;" alt="" src="./img/20_config_despues.jpg"><br>
+</td>
+</tr>
+</tbody>
+</table>
+<br/><br>
+
+<br/>8.- Hacer lo mismo para el archivo
+<em style="font-style: normal">parametros.php</em> que localizaremos en:<br>
+
+<table style="text-align: left; width: 850px; margin-left: auto; margin-right: auto;" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td style="vertical-align: top; height: 250px; width: 350px;">
+<br>
+Clic en &#237;cono carpeta parametros.</td>
+<td style="vertical-align: top; height: 250px; width: 450px;">
+<img style="width: 290px; height: 121px;" alt="" src="./img/21_parametros.jpg"><br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; height: 250px; width: 350px;">
+<br>
+Clic en parametros.php</td>
+<td style="vertical-align: top;"><img style="width: 233px; height: 95px;" alt="" src="./img/22_archivos_parametros.jpg"><br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><br>
+Informaci&#243;n original:</td>
+<td style="vertical-align: top;"><img style="width: 572px; height: 210px;" alt="" src="./img/23_antes.jpg"><br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><br>
+Modificaciones:</td>
+<td style="vertical-align: top;"><img style="width: 571px; height: 208px;" alt="" src="./img/24_despues.jpg"><br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+LISTO!!!<br/><br>
+
+<br/>En el navegador ponemos:  
+http://www.fororecicladores.com/codekamx1/index.php<br>
+<br>
+<br/><img style="border: 0px solid ; width: 900px; height: 479px;" alt="" src="./img/25_codeka_andadno.jpg">
+carlos sierra<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"> 
+</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

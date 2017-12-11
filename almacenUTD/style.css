@@ -1,0 +1,41 @@
+/* Body Styles */
+
+body {margin: 0; background: #cccccc}
+
+p,td,li {font: normal 10px verdana,arial,helvetica,sans-serif; color: #808080}
+
+ul {list-style: square}
+
+h1 {font: normal 17pt arial,helvetica,tahoma,sans-serif; color: steelblue}
+
+h2 {font: bold 11px verdana,arial,helvetica,sans-serif; color: #414141}
+
+a {color: steelblue}
+
+a:hover {color: maroon}
+
+
+.hrz_line {background: #a1a1a1}
+
+.maincontent {background: #ffffff; padding: 2em}
+
+
+
+
+/* Table Styles */
+
+.tablehead {background: #dddddd}
+
+.rowA {background: #EBECED}
+
+.rowB {background: #ffffff}
+
+
+
+
+
+
+/* Form Styles */
+.textfield {font-family: verdana, sans-serif; font-size:11px; color:#666666; background:#ffffff; border-top:1px solid #bbbbbb; border-left:1px solid #bbbbbb; border-bottom:1px solid #dddddd; border-right:1px solid #dddddd;}
+
+.submit {font: normal 8pt "verdana","arial mt","arial narrow","arial";}

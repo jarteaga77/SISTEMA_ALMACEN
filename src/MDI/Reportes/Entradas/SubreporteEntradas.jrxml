@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="111acb63-a1c1-4958-a42e-5192ecf08ab3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="168"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha_ini" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_fin" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="id_proveedor" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT alba.codalbaran, DATE_FORMAT(alba.fecha,'%m-%d-%Y')AS fecha,alba.requisicion,alba.orden_compra,alba.remision_factura,fam.nombre, arti.descripcion,um.nombre AS unidad,linea.cantidad, alba.compras
+FROM 
+albaranesp alba JOIN albalineap linea ON alba.codalbaran=linea.codalbaran
+JOIN articulos arti ON arti.codarticulo=linea.codigo
+JOIN embalajes um ON arti.codembalaje=um.codembalaje
+JOIN familias fam ON fam.codfamilia=arti.codfamilia
+
+WHERE alba.fecha BETWEEN $P{fecha_ini} AND $P{fecha_fin} AND alba.codproveedor=$P{id_proveedor}]]>
+	</queryString>
+	<field name="codalbaran" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="requisicion" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="orden_compra" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="remision_factura" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="unidad" class="java.lang.String"/>
+	<field name="cantidad" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="compras" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="13" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="802" height="12" backcolor="#CCCCFF" uuid="7aa56473-d2be-4b13-8b73-6c97906db3e2"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="12" y="0" width="55" height="12" uuid="5a124db8-b376-4374-be40-8b8b80b5129b"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Entrada N°]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="69" y="0" width="29" height="12" uuid="84c4510f-ee61-4f32-88a0-0d8c17ea4a3f"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="121" y="0" width="55" height="12" uuid="6f605ac2-86fb-4506-8f05-78f2ade59a37"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Requisición]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="0" width="90" height="12" uuid="f0d8a5b4-ca49-4d0f-acf0-29897fcb6164"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Orden de Compra]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="274" y="0" width="55" height="12" uuid="83a1863b-121b-4d45-9dfd-adbdd52971b2"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REM / FACT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="352" y="0" width="38" height="12" uuid="ae89d2eb-fdc3-46c0-aca5-dd9421ff4dce"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Grupo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="407" y="0" width="55" height="12" uuid="31b24431-b916-438d-8159-5814f0fb3250"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="584" y="0" width="22" height="12" uuid="4b8f7705-6d57-401a-8a99-a28179007794"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="628" y="0" width="45" height="12" uuid="fc648148-7d4e-425c-a5e6-98a77f847a73"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="712" y="1" width="55" height="12" uuid="d44535f0-8ca5-42b8-8d4e-03540c350f90"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Compras]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField>
+				<reportElement x="12" y="0" width="55" height="12" uuid="dc3d87f1-deb6-4c1c-9795-ae902dad187e"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codalbaran}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="67" y="0" width="43" height="12" uuid="e652f828-9356-4264-b27c-bf87be9066ed"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="0" width="44" height="12" uuid="40809743-69a3-4320-a26b-2d4301cf2a8b"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{requisicion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="184" y="0" width="77" height="12" uuid="3c9a8900-8f10-4c05-8f71-ef0111f86f50"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{orden_compra}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="274" y="0" width="78" height="12" uuid="451695ff-3f0c-43a6-98f9-f4bcfa59b152"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{remision_factura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="352" y="0" width="55" height="12" uuid="1fcac30b-9c5f-4395-8003-3305921b0900"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="407" y="0" width="177" height="12" uuid="36404e0b-62f0-4a9b-95fa-b2797586b884"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="584" y="0" width="55" height="12" uuid="9a0d481a-9cf6-4e9f-88b4-e9fb0e35358d"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{unidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="639" y="0" width="55" height="12" uuid="78e58845-f431-4795-91c1-a66c367ea8c1"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="712" y="0" width="90" height="12" uuid="4ba42b8d-8430-4c10-ad92-afe4fc0d3efb"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{compras}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

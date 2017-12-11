@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="555" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="111acb63-a1c1-4958-a42e-5192ecf08ab3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha_ini" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_fin" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="id_item" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT repa.id,DATE_FORMAT(repa.fecha_entrada,'%m-%d-%Y')AS fecha,repa.remision,repa.tec_hardware,CONVERT (CONVERT(CONVERT(arti.descripcion USING latin1)USING binary)USING utf8)AS descripcion ,linea.cantidad, um.nombre,
+CONCAT (CONVERT(CONVERT(CONVERT(repa.observacion USING latin1)USING binary)USING utf8), ' . ' ,CONVERT(CONVERT(CONVERT(linea.observacion USING latin1)USING binary)USING utf8 ))AS observacion
+FROM 
+entrada_reparacion repa JOIN  linea_ent_repa linea ON repa.id=linea.codalbaran
+JOIN articulos arti ON arti.codarticulo=linea.codigo
+JOIN embalajes um ON arti.codembalaje=um.codembalaje
+
+WHERE repa.fecha_entrada BETWEEN $P{fecha_ini} AND $P{fecha_fin} AND repa.id_item_tramos=$P{id_item}]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="remision" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tec_hardware" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cantidad" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="observacion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="14" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="2" y="0" width="553" height="12" backcolor="#CCFFFF" uuid="373823a3-3c93-4e30-8287-fd08b0b55c65"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="12" y="0" width="40" height="12" uuid="85aed5e8-3448-4889-8ef4-36f10f8f0600"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Entrada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="58" y="0" width="33" height="12" uuid="b9a1790d-35a0-4436-bc82-ac0cdceaa628"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="102" y="0" width="51" height="12" uuid="69924eb8-d576-4fc9-bf68-e960d3ff7a79"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Remisión]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="171" y="0" width="75" height="12" uuid="96e80ea1-0b1b-49fe-b3e5-6e950fb20441"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tec. Hardware]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="246" y="0" width="69" height="12" uuid="ed29f32e-1cf4-46eb-a69e-61a4b0e1efd9"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="345" y="0" width="51" height="12" uuid="1cab4c5d-ebf2-4625-95aa-a8ed66f24b14"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="396" y="0" width="26" height="12" uuid="6848927f-a4cd-475d-a305-827418e1b1d6"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="439" y="0" width="69" height="12" uuid="f7671264-ffa1-4948-8d6e-e1695903f28d"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Observación]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<textField>
+				<reportElement x="12" y="0" width="46" height="12" uuid="b0ebcc27-1ac0-4926-90c1-561713d1372b"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="58" y="0" width="44" height="12" uuid="1f917280-6469-4de7-86e9-d955b4ad474f"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="102" y="0" width="69" height="12" uuid="df3e84e7-291c-48d7-b26b-e5c13c6ee494"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{remision}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="171" y="0" width="69" height="12" uuid="9d5a827a-ff4b-4a05-a427-d4f3d5563dc6"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tec_hardware}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="240" y="0" width="105" height="12" uuid="5db6146e-c530-4d84-bd07-1afd6618be9a"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="345" y="0" width="51" height="12" uuid="46aeb5c6-e9c0-4d0d-9f8b-af6a554f34d3"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="396" y="0" width="43" height="12" uuid="ea9bbda3-d5ff-4051-8260-fee76afdfcdf"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="439" y="0" width="116" height="12" uuid="3e2926e0-193b-4223-bc34-95dbad07c88b"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{observacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

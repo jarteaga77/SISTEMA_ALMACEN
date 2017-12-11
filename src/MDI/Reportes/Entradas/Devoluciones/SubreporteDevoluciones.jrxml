@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="555" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="111acb63-a1c1-4958-a42e-5192ecf08ab3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha_ini" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_fin" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="id_item" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT devo. id_devoluciones,DATE_FORMAT(devo.fecha,'%m-%d-%Y')AS fecha,CONVERT (CONVERT(CONVERT(arti.descripcion USING latin1)USING binary)USING utf8)AS descripcion ,linea.cantidad, um.nombre, CONVERT (CONVERT(CONVERT(devo.recibe USING latin1)USING binary)USING utf8) AS recibe, CONVERT (CONVERT(CONVERT(devo.observacion USING latin1)USING binary)USING utf8)AS observacion
+FROM 
+devoluciones devo JOIN devulucioneslinea linea ON devo.id_devoluciones=linea.coddevo
+JOIN articulos arti ON arti.codarticulo=linea.cod_producto
+JOIN embalajes um ON arti.codembalaje=um.codembalaje
+
+WHERE devo.fecha BETWEEN $P{fecha_ini} AND $P{fecha_fin} AND devo.item_ccostos=$P{id_item}]]>
+	</queryString>
+	<field name="id_devoluciones" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cantidad" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="recibe" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="observacion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="14" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="555" height="12" backcolor="#CCFFFF" uuid="4024081c-4b47-4700-817a-173d23cf7b5c"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="17" y="0" width="79" height="12" uuid="d7fdef81-4d8a-4fe3-b092-534622f0f699"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Devolución N°]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="96" y="0" width="38" height="12" uuid="d954ce52-c694-4db3-9df0-a9845cefa68b"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="145" y="0" width="79" height="12" uuid="6b0cf037-5d4c-462a-9ae6-dfe1feb7d059"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="255" y="0" width="49" height="12" uuid="0d44b072-05f3-4b02-a3b8-691be11c952b"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="0" width="19" height="12" uuid="c12f6d09-362a-41f5-8317-9d5ecc7f00c7"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="0" width="37" height="12" uuid="48ac3c87-0327-43b9-8322-191a756c20f4"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recibe]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="429" y="0" width="79" height="12" uuid="b9c296f7-2c7d-4ede-8e40-d2a64ef745b1"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Observación]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<textField>
+				<reportElement x="17" y="0" width="55" height="12" uuid="53e31a66-d975-4ea6-8ca0-2e04988df96d"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_devoluciones}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="96" y="0" width="49" height="12" uuid="8d923601-66cb-4b1a-a609-29394d536d9d"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="145" y="0" width="110" height="12" uuid="348807f4-e94d-4429-bfed-515937ec0598"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="255" y="0" width="49" height="12" uuid="9e374689-23a7-4283-aa4b-2f96a8301b97"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="304" y="0" width="46" height="12" uuid="cffb8ef8-5565-4567-be3e-941355846787"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="0" width="79" height="12" uuid="288b6c9d-fc02-48e9-99f2-1141747a8cd5"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{recibe}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="429" y="0" width="126" height="12" uuid="7234346f-da57-43a4-b0a6-9f900bd34a4c"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{observacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

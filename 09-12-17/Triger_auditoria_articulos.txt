@@ -1,0 +1,13 @@
+DELIMITER $$
+
+CREATE TRIGGER tg_auditoria_articulos   AFTER UPDATE ON articulos  FOR EACH ROW
+BEGIN
+   INSERT INTO tb_auditoria_articulos
+     (usuario, fecha,id_articulo,referencia,
+     descripcion,stock_old,stock_new)
+     VALUES (CURRENT_USER(), NOW(), OLD.codarticulo, OLD.referencia,
+     OLD.descripcion, OLD.stock, NEW.stock);
+END;
+$$
+
+DELIMITER ;

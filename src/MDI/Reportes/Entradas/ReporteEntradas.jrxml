@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8513861b-54c3-441d-a66a-4c5e89398227">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="aada6966-551d-41c2-b97e-e7b291dffea4"/>
+	<parameter name="fecha_ini" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_fin" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="subreporte" class="JasperReport"/>
+	<queryString>
+		<![CDATA[SELECT prove.codproveedor,CONCAT (prove.nombre, ' - ',' Nit ', prove.nif) AS proveedor
+
+FROM albaranesp alba JOIN albalineap linea ON alba.codalbaran=linea.codalbaran
+JOIN proveedores prove ON prove.codproveedor=alba.codproveedor
+
+
+WHERE alba.fecha BETWEEN $P{fecha_ini} AND $P{fecha_fin}
+
+GROUP BY prove.nombre,prove.nif
+]]>
+	</queryString>
+	<field name="codproveedor" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="proveedor" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="91" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="50" width="131" height="12" uuid="4f9fa208-8806-4cbc-a9ec-3a42594493ae"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha y Hora Generación]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement x="131" y="50" width="100" height="12" uuid="a1c93641-8126-4714-b5b5-9034c7ed2a2b"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="307" y="77" width="184" height="14" uuid="4f9fa208-8806-4cbc-a9ec-3a42594493ae"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE ENTRADAS ALMACEN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="247" y="1" width="338" height="14" uuid="d5281413-7cc7-4d42-8151-753f612e66bb"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[UNIÓN TEMPORAL DESARROLLO VIAL DEL VALLE DEL CAUCA Y CAUCA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="364" y="15" width="100" height="14" uuid="75d8fb9f-d398-4065-838f-75d77c394ec9"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[NIT. 830.059-605-1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="565" y="50" width="37" height="12" uuid="d32ca817-7307-4287-b8e9-ea98c54c5a00"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Desde]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="602" y="50" width="67" height="12" uuid="4cede2ae-d325-4222-b7de-3ef287c6fe13"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha_ini}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="669" y="50" width="31" height="12" uuid="72626c51-8ce1-42fe-9732-b804f9ef5537"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Hasta]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="700" y="50" width="100" height="12" uuid="75a64c23-af0c-49aa-bc68-401b938dfe6d"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha_fin}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="1" width="294" height="12" uuid="1f82b8f8-add6-4347-bcc0-479452eaed25"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{proveedor}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="50">
+			<subreport>
+				<reportElement x="0" y="0" width="802" height="50" uuid="b5b0aa7d-4b96-4695-a26d-4a8672ec6a5b"/>
+				<subreportParameter name="id_proveedor">
+					<subreportParameterExpression><![CDATA[$F{codproveedor}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="fecha_fin">
+					<subreportParameterExpression><![CDATA[$P{fecha_fin}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="fecha_ini">
+					<subreportParameterExpression><![CDATA[$P{fecha_ini}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{subreporte}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>
